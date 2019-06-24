@@ -10,7 +10,7 @@ reddit_instance = praw.Reddit(user_agent=        'your custom user agent name he
                               password=          details.password,
                               username=          details.username)
 
-###  GETTING KEYWORDS  ###
+###  GETTING KEYWORD  ###
 keyword = ''
 sure = 'no'
 while sure != 'yes':
@@ -27,18 +27,22 @@ while sure != 'yes':
     
     
 ###  DELETING ALL RELEVANT POSTS AND COMMENTS ###
-print('Now finding and deleting all your relevant posts and comments. Please be patient, it might take several minutes...')
+print('Now finding and deleting all your relevant posts and comments. I process one post/comment a second, so this might take '
+      'a while depending on the amount of content on your account...')
 s=0
 c=0
 api = psaw.PushshiftAPI()
+
 # Dealing with comments
-for comment in list(api.search_comments(author=details.username, q=keyword)):
+for comment in [comment for comment in list(api.search_comments(author=details.username, q=keyword)) \
+                if reddit_instance.comment(comment.id).body!='[deleted]']:
     reddit_instance.comment(comment.id).delete()
     c+=1
     print(f'{c} comments have been deleted')
 
 # Dealing with submissions
-for submission in list(api.search_submissions(author=details.username, q=keyword)):
+for submission in [submission for submission in list(api.search_submissions(author=details.username, q=keyword)) \
+                   if reddit_instance.submission(submission.id).selftext!='[deleted]']:
     reddit_instance.submission(submission.id).delete()
     s+=1
     print(f'{s} posts have been deleted')
