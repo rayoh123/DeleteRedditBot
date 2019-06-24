@@ -2,7 +2,6 @@ import praw
 import psaw
 import details
 import sys
-import time
 
 ###  LOGGING INTO REDDIT  ###
 reddit_instance = praw.Reddit(user_agent=        'your custom user agent name here',
