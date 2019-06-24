@@ -5,10 +5,10 @@ import sys
 
 ###  LOGGING INTO REDDIT  ###
 reddit_instance = praw.Reddit(user_agent=        'your custom user agent name here',
-                     client_id=         details.client_id,
-                     client_secret=     details.secret,
-                     password=          details.password,
-                     username=          details.username)
+                              client_id=         details.client_id,
+                              client_secret=     details.secret,
+                              password=          details.password,
+                              username=          details.username)
 
 ###  GETTING KEYWORDS  ###
 keyword = ''
