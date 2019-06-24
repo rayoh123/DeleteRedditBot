@@ -1,0 +1,5 @@
+name = 'delete_bot'
+client_id = 'your client ID here'
+secret = 'your secret key here'
+username = 'your username'
+password = 'your password'
